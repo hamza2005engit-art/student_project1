@@ -6,7 +6,7 @@ import '../../../../core/widget/costum_image_continer.dart';
 import '../../../../core/widget/custom_buttom.dart';
 import '../../../../core/widget/custom_role_card.dart';
 import '../../../../routes/app_routes.dart';
-import '../controllers/firstregister_controller.dart';
+
 import '../controllers/register_controller.dart';
 import 'package:student_project1/features/auth/presentation/widgets/corner_circle.dart';
 import 'package:student_project1/features/auth/presentation/widgets/auth_header.dart';
@@ -16,9 +16,33 @@ class FirstRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FirstRegisterController controller = Get.find<FirstRegisterController>();
+    final RegisterController controller = Get.find<RegisterController>();
 
     return Scaffold(
+      bottomNavigationBar: SafeArea(
+        minimum: const EdgeInsets.all(16),
+
+        child: Obx(
+
+              () => controller.isLoading.value
+
+              ? const Padding(
+            padding: EdgeInsets.all(20),
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+
+              : CustomButton(
+
+            text: "continue".tr,
+
+            icon: Icons.login,
+
+            onPressed: () => Get.toNamed(Routes.REGISTER2),
+          ),
+        ),
+      ),
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
@@ -52,24 +76,21 @@ class FirstRegisterScreen extends StatelessWidget {
                               isSelected: controller.selectedRole.value=="student",
 
                               onTap: () =>controller.selectedRole.value="student",
-                            height:100 ,
-                              width: 100,
+
                             ),
                             RoleCard(
                               title: 'Teacher'.tr,
                               isSelected: controller.selectedRole.value=="teacher",
 
                               onTap: () =>controller.selectedRole.value="teacher",
-                              height:100 ,
-                              width: 100,
+
                             ),
                             RoleCard(
                               title: 'Parents'.tr,
                               isSelected: controller.selectedRole.value=="parents",
 
                               onTap: () =>controller.selectedRole.value="parents",
-                              height:100 ,
-                              width: 100,
+
                             ),
                           ],
                       ),
@@ -90,33 +111,17 @@ class FirstRegisterScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Obx(() => ImagePickerCard(
-                        label: "Idant Imag".tr,
-                        image: controller.personImage.value,
-                        onTap: () => controller.pickImage(true),
-                        width: 150,
-                        height: 100,
-                      )),
+
 
                       Obx(() => ImagePickerCard(
                         label: "Person Image".tr,
                         image: controller.identityImage.value,
                         onTap: () => controller.pickImage(false),
-                        width: 150,
-                        height: 100,
+
                       )),
                     ],
                   ),
-                  SizedBox(height: 24,),
-                  Obx(
-                        () => controller.isLoading.value
-                        ? const CircularProgressIndicator()
-                        : CustomButton(
-                      text: "continue".tr,
-                      icon: Icons.login,
-                      onPressed: () =>controller.firstregister(),
-                    ),
-                  )
+
                 ],
 
               ),

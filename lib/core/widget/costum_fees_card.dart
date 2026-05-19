@@ -35,146 +35,123 @@ class _ExercisesCardState extends State<FeesCard> {
   @override
   Widget build(BuildContext context) {
 
-
-
+    double progress = widget.paid / widget.total;
 
     return Card(
       color: Theme.of(context).brightness == Brightness.dark
           ? AppColors.backcardDark
-          : AppColors.textFeildLight,
-      elevation: 26,
-      shadowColor: Color(0xFF00D4B6),
+          : Colors.white,
+      elevation: 10,
+      shadowColor: const Color(0x2200D4B6),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(10),
+        borderRadius: BorderRadius.circular(20),
       ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Row(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            /// Top Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
 
-
-
-
+                /// Icon
                 Container(
-                  padding:const EdgeInsets.all(12),
-                  decoration:BoxDecoration(
-
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
                     color: Theme.of(context).brightness == Brightness.dark
                         ? AppColors.secondryDark
                         : AppColors.secondryLight,
-
-
-
-                    borderRadius: BorderRadius.circular(10),
-
+                    borderRadius: BorderRadius.circular(12),
                   ),
-
                   child: Icon(
                     widget.icon,
-                    color:  Theme.of(context).brightness == Brightness.dark
+                    color: Theme.of(context).brightness == Brightness.dark
                         ? AppColors.backcardDark
                         : AppColors.contonergredLight,
-                    size:30,
+                    size: 28,
                   ),
                 ),
 
-
-
-                const SizedBox(width: 12,),
-                Expanded(
-                    child:Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.total_remaining.toString(),
-                          style: TextStyle(
-                              color: Theme.of(context).brightness == Brightness.dark
-                                  ? AppColors.dateDark
-                                  : AppColors.blacLight,
-                              fontSize: 24
-
-                          ),
-                          maxLines: 1,
-                          overflow:TextOverflow.ellipsis ,
-
-
-                        ),
-
-                        const SizedBox(height:4 ,),
-                        Text(
-                          widget.total_fess.toString(),
-                          style: TextStyle(
-                            color: Theme.of(context).brightness == Brightness.dark
-                                ? AppColors.secondryDark
-                                : AppColors.textLight,
-                          ),
-
-
-                        ),
-                        const SizedBox(height:10 ,),
-                        Text(
-                          widget.total.toString(),
-                          style: TextStyle(
-                            color: Theme.of(context).brightness == Brightness.dark
-                                ? AppColors.secondryDark
-                                : AppColors.blacLight,
-                          ),
-
-
-                        ),
-                        const SizedBox(height:10 ,),
-                        Align(
-                          alignment:Alignment.bottomLeft ,
-                          child: Row(
-                            children: [
-                              Icon(Icons.schedule),
-                              SizedBox(width: 7,),
-                              Text(
-                                "Date time",
-                                style:
-                                TextStyle(
-                                  color: Theme.of(context).brightness == Brightness.dark
-                                      ? AppColors.contonergredLight
-                                      : AppColors.textLight,
-                                ),
-                                maxLines: 1,
-                                overflow:TextOverflow.ellipsis ,
-
-                              ),
-                              SizedBox(width: 7,),
-                              Text(
-                                widget.paid.toString(),
-                                style:
-                                TextStyle(
-                                  color: Theme.of(context).brightness == Brightness.dark
-                                      ? AppColors.contonergredLight
-                                      : AppColors.textLight,
-                                ),
-                                maxLines: 1,
-                                overflow:TextOverflow.ellipsis ,
-
-                              ),
-                            ],
-                          ),
-                        ),
-
-                      ],
-                    )),
-
+                /// Title
+                Text(
+                  "School Fees",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black87,
+                  ),
+                ),
               ],
             ),
 
+            const SizedBox(height: 30),
 
-          ),
+            /// Paid & Remaining
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
 
-        ],
+                Text(
+                  "Paid: ${widget.paid} \$",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black87,
+                  ),
+                ),
+
+                Text(
+                  "Remaining: ${widget.total_remaining} \$",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 15),
+
+            /// Progress Bar
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: LinearProgressIndicator(
+                value: progress,
+                minHeight: 10,
+                backgroundColor: Colors.grey.shade300,
+                valueColor: const AlwaysStoppedAnimation(
+                  Color(0xFF00BFA6),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            /// Total
+            Text(
+              "Total: ${widget.total} \$",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black87,
+              ),
+            ),
+          ],
+        ),
       ),
     );
-
-
-
   }
 
 }

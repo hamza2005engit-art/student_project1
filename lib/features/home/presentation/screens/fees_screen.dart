@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/widget/costum_fees_card.dart';
+import '../../../../core/widget/coustum_totalfees_card.dart';
 
 
 
@@ -32,7 +33,7 @@ class _FeesScreenState extends State<FeesScreen>
 
           title:Align(
             alignment: Alignment.centerLeft,
-              child: Text("data"))
+              child: Text("Fees",style: TextStyle(color: Colors.black),))
 
 
 
@@ -41,11 +42,20 @@ class _FeesScreenState extends State<FeesScreen>
 
 
         body:Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(7),
             child: Column(
 children: [
-  FeesCard(total: 30, paid: 30, icon: Icons.add_ic_call, total_fess: 30, total_remaining: 30,
-
+  TotalFeesCard(
+    title: "TOTAL FESS",
+    amount: 4000,
+  ),
+  SizedBox(height: 20,),
+  FeesCard(
+    total: 3000,
+    paid: 1000,
+    total_remaining: 2000,
+    total_fess: 3000,
+    icon: Icons.school,
   )
 ],
             )

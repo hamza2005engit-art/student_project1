@@ -1,8 +1,8 @@
 class User {
   final int id;
   final String name;
-  final String phone;
+  final String email;
   final String? token;
 
-  User({required this.id, required this.name, required this.phone, this.token});
+  User({required this.id, required this.name, required this.email, this.token});
 }

@@ -24,8 +24,8 @@ class ImagePickerCard extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        width: width ?? 150,
-        height: height ?? 100,
+        width: width ?? MediaQuery.of(context).size.width*0.70,
+        height: height ?? MediaQuery.of(context).size.width*0.24,
         decoration: BoxDecoration(
           color: image != null
               ? Colors.transparent
@@ -62,7 +62,7 @@ class ImagePickerCard extends StatelessWidget {
               const Icon(
                 Icons.add_photo_alternate_outlined,
                 color: Colors.grey,
-                size: 32,
+                size: 42,
               ),
               const SizedBox(height: 4),
               Text(

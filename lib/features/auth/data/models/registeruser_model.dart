@@ -1,36 +1,40 @@
-import 'package:student_project1/features/auth/domain/entities/register_user.dart';
+import '../../domain/entities/register_user.dart';
 
-class RegisteruserModel extends RegisterUser {
-  RegisteruserModel({required super.id,
-    required super.name,
-    required super.phone,
-    required super.location,
-    required super.subject,
-    required super.password,
-    required super.confermpassword,
-    super.token});
+class RegisterUserModel extends RegisterUser {RegisterUserModel({
+  required super.fullName,
+  required super.email,
+  required super.phone,
+  required super.location,
+  required super.role,
+  required super.password,
+  required super.passwordConfirmation,
+  required super.profileImagePath,
+  super.token,
+});
 
-  factory RegisteruserModel.fromJson(Map<String, dynamic> json) {
-    return RegisteruserModel(
-      id: json['id'],
-      name: json['name'],
-      phone: json['phone'],
-      location: json['location'],
-      subject: json['subject'],
-      password: json['password'],
-      confermpassword: json['confermpassword'],
-      token: json['access_token'],
-    );
-  }
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'phone': phone,
-      'location': location,
-      'subject': subject,
-      'password': password,
-      'password_confirmation': confermpassword,
-    };
-  }
-
+factory RegisterUserModel.fromJson(Map<String, dynamic> json) {
+  final userData = json['user'];
+  return RegisterUserModel(
+    fullName: userData['full_name'] ?? '',
+    email: userData['email'] ?? '',
+    phone: userData['phone'] ?? '',
+    location: userData['location'] ?? '',
+    role: '', // الأدوار غالباً تأتي بشكل منفصل أو عبر التوكن
+    password: '',
+    passwordConfirmation: '',
+    profileImagePath: userData['profile_image'] ?? '',
+    token: json['token'],
+  );
 }
+}
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'fullName': fullName,
+  //     'phone': phone,
+  //     'location': location,
+  //     'subject': subject,
+  //     'password': password,
+  //     'password_confirmation': confermpassword,
+  //   };
+  // }
+

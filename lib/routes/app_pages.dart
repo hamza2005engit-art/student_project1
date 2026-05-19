@@ -12,14 +12,16 @@ import 'package:student_project1/features/navigation/navigation_widget.dart';
 import 'package:student_project1/routes/app_routes.dart';
 import 'package:student_project1/features/auth/presentation/bindings/auth_binding.dart';
 
+import '../features/auth/presentation/screens/first_forgetpassword_screen.dart';
 import '../features/auth/presentation/screens/firstregister_screen.dart';
 import '../features/auth/presentation/screens/hellostudent_screen.dart';
 import '../features/auth/presentation/screens/register_screen.dart';
+import '../features/auth/presentation/screens/sepalsh_screen.dart';
 import '../features/home/presentation/screens/fees_screen.dart';
 
 class AppPages {
   // تحديد الصفحة الابتدائية للتطبيق
-  static const String INITIAL = Routes.FEES;
+  static const String INITIAL = Routes.SEPLASH;
 
   static final List<GetPage> routes = [
 
@@ -29,6 +31,12 @@ class AppPages {
       page: () => const LogInScreen(),
       binding: AuthBinding(),
       transition: Transition.fadeIn, // تأثير الانتقال بين الصفحات
+    ),
+    GetPage(
+      name: Routes.SEPLASH,
+      page: () => const SplashScreen (),
+      binding: AuthBinding(),
+      transition: Transition.fadeIn,
     ),
 
     GetPage(
@@ -64,6 +72,12 @@ class AppPages {
     GetPage(
       name: Routes.FORGETPASSWORD,
       page: () => const ForgetpasswordScreen(),
+      binding: AuthBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: Routes.FirstFORGETPASSWORD,
+      page: () => const FirstForgetpasswordScreen(),
       binding: AuthBinding(),
       transition: Transition.fadeIn,
     ),

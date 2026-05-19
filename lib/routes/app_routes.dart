@@ -16,7 +16,10 @@ abstract class Routes {
   static const String HELLO1 = '/hello1';
   static const String HELLO2 = '/hello2';
   static const String HELLO3 = '/hello3';
+  static const String SEPLASH = '/seplash';
   static const String NOTIFINCATION = '/notifincation';
+
   static const String FEES = '/fees';
+  static const String FirstFORGETPASSWORD = '/firstforgetpasswd';
  // static const String MARKS = '/marksstudent';
 }

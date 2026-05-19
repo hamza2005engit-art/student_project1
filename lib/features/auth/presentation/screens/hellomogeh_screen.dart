@@ -54,7 +54,7 @@ class HellomogehScreen extends StatelessWidget {
             left: 24,
             right: 24,
             child: NextButton(
-              onTap: () => Get.toNamed(Routes.HELLO2),
+              onTap: () => Get.toNamed(Routes.REGISTER1),
             ),
           ),
           // Page Indicator

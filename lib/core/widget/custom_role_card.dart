@@ -29,8 +29,8 @@ Widget build(BuildContext context){
       onTap: onTap,
       child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-        width: width??100,
-        height: height??100,
+          width: width ?? MediaQuery.of(context).size.width * 0.25,
+          height: height ?? MediaQuery.of(context).size.width * 0.25,
         decoration: BoxDecoration(
           color:isSelected?(selectColor??
               Theme.of(context).primaryColor).withOpacity(0.1)

@@ -6,11 +6,13 @@ import 'package:student_project1/features/auth/domain/entities/forgetpassword_us
 import 'package:student_project1/features/auth/domain/repositories/auth_repository.dart';
 import 'package:student_project1/features/auth/domain/usecases/forgetpassword_usecase.dart';
 import 'package:student_project1/features/auth/domain/usecases/login_usecase.dart';
-import 'package:student_project1/features/auth/presentation/controllers/login_controller.dart';
+import 'package:student_project1/features/auth/presentation/controllers/login_controller.dart' hide RegisterController;
 
-import '../../domain/usecases/firstregister_usecase.dart';
+
+import '../../domain/usecases/first_forgetpassword_usecase.dart';
 import '../../domain/usecases/register_usecase.dart';
-import '../controllers/firstregister_controller.dart';
+
+import '../controllers/first_forgetpassword_controller.dart';
 import '../controllers/forgetpassword_controller.dart';
 import '../controllers/register_controller.dart';
 
@@ -20,7 +22,7 @@ class AuthBinding extends Bindings {
 
     //Get.lazyPut<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl());
     // للبيانات الوهمية أثناء التطوير
-    Get.lazyPut<AuthRemoteDataSource>(() => AuthRemoteDataSourceMock());
+    Get.lazyPut<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl());
     Get.lazyPut<AuthRepository>(() => AuthRepositoryImpl(remoteDataSource: Get.find()));
 
 
@@ -28,9 +30,13 @@ class AuthBinding extends Bindings {
     Get.lazyPut(() => LoginController(loginUseCase: Get.find()));
     Get.lazyPut(() => RegisterUseCase(Get.find()));
     Get.lazyPut(() => RegisterController(Get.find()));
-    Get.lazyPut(() => FirstRegisterUserCase(Get.find()));
-    Get.lazyPut(() => FirstRegisterController(Get.find()));
+
+    Get.lazyPut(() => FirstForgetpasswordUsecase(Get.find()));
+    Get.lazyPut(() => FirstForgetPasswordController(Get.find()));
     Get.lazyPut(() => ForgetpasswordUsecase(Get.find()));
-    Get.lazyPut(() => ForgetPasswordController(Get.find()));
+    Get.lazyPut(() => ForgetPasswordController(
+      Get.find<ForgetpasswordUsecase>(),
+      Get.find<FirstForgetpasswordUsecase>(),
+    ));
   }
 }

@@ -1,20 +1,23 @@
 class RegisterUser {
-  final int id;
-  final String name;
+  final String fullName; // مطابق لـ full_name في الباك-إند
+  final String email;
   final String phone;
   final String location;
-  final String subject;
+  final String role;
   final String password;
-  final String confermpassword;
+  final String passwordConfirmation;
+  final String profileImagePath; // لمسار الصورة من الهاتف
   final String? token;
 
   RegisterUser({
-    required this.id,
-    required this.name,
+    required this.fullName,
+    required this.email,
     required this.phone,
     required this.location,
-    required this.subject,
+    required this.role,
     required this.password,
-    required this.confermpassword,
-    this.token});
+    required this.passwordConfirmation,
+    required this.profileImagePath,
+    this.token,
+  });
 }

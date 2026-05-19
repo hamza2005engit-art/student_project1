@@ -17,7 +17,11 @@ class RegisterScreen extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-          const CornerCircles(),
+          const Positioned.fill(
+            child: IgnorePointer(
+              child: CornerCircles(),
+            ),
+          ),
           SafeArea(
             minimum: const EdgeInsets.all(12),
             child: SingleChildScrollView(
@@ -41,12 +45,10 @@ class RegisterScreen extends StatelessWidget {
 
                   const SizedBox(height: 24,),
                   CustomTextField(
-                    controller:controller.emailController ,
-                    label: "email".tr,
-                    hintText: "email_hint".tr,
-                    //hintColor: const Color(0xFF364F72),
-                    prefixIcon: Icons.email,
-                   // iconColor: const Color(0xFF364F72),
+                    controller: controller.emailController, // تأكد من تعريفه في الـ Controller
+                    label: "Email".tr,
+                    hintText: "example@mail.com",
+                    prefixIcon: Icons.email_outlined,
                   ),
                   const SizedBox(height: 24,),
                   CustomTextField(
